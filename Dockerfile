@@ -1,7 +1,8 @@
 FROM alpine:3.18
 
 RUN apk add --no-cache \
-	dante-server
+	dante-server \
+        bash
 
 COPY sockd.conf /etc/
 COPY entrypoint.sh /usr/local/bin/

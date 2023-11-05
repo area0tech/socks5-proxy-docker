@@ -10,8 +10,8 @@ fi
 adduser -D "$USERNAME"
 echo "$USERNAME:$PASSWORD" | chpasswd
 
-INT=$(ip route |grep default | awk '{ print $NF }')
-sed -i "s/^external: .*$/external: ${INT}/g" /etc/sockd.conf
+EXIP=$(ip route get 1.2.3.4 | awk '{ print $NF }')
+sed -i "s/^external: .*$/external: ${EXIP}/g" /etc/sockd.conf
 
 # Run the command specified in the Dockerfile CMD or override it with the provided command
 exec "$@"
